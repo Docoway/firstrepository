@@ -8,3 +8,4 @@ creating a new branch is quick and2 simple.
 creating a new branch is quick for git.
 creating a new branch is quick and simple.
 >>>>>>> featurel
+use the git merge --no-ff to keep the branch information after the deletion.
