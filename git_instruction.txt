@@ -1,0 +1,22 @@
+git教程
+1.初始化一个仓库： cd dir  and     git init
+添加文件到git repository： git add <file>  + git commit -m 'commit message'
+
+2.查看状态
+git status    查看工作区状态
+git diff <file>    查看修改内容   git diff --cached <file>
+
+3.版本回退
+git log    查看提交历史  git log --pretty=oneline      git log --graph --pretty=oneline
+git reset --hard HEAD^ 回到上个版本   git reset --hard HEAD^^回到上上个版本
+git reset --hard commit id  回到该版本   
+git reflog  查看命令
+
+4撤销修改
+git checkout -- <file>  将文件在工作区的修改全部撤销  也就是将文件回到最近一次的git add或者Git commit 文件状态
+git checkout <branch>  切换分支
+git add 提交到暂存区之后之后 想将文件放回工作区： git reset HEAD <file> 
+
+5.删除文件
+删除工作区文件： rm test.txt  或者 进入文件夹删除文件
+删除版本库文件： git rm test.txt并且git commit -m 'message'   或者用git checkout -- file  来恢复工作区误删的文件
