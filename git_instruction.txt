@@ -19,4 +19,52 @@ git add 提交到暂存区之后之后 想将文件放回工作区： git reset 
 
 5.删除文件
 删除工作区文件： rm test.txt  或者 进入文件夹删除文件
-删除版本库文件： git rm test.txt并且git commit -m 'message'   或者用git checkout -- file  来恢复工作区误删的文件
+删除版本库文件： git rm test.txt并且git commit -m 'message'   或者用git checkout -- <file>  来恢复工作区误删的文件
+
+6.添加远程库
+git remote add origin https://github.com/Docoway/firstrepository.git  将本地的创库与github中远程仓库关联
+git push -u origin master (第一次推送时用)  git push origin master(dev) 将本地的分之内容推送到远程分支
+git pull origin master:master 将远程库分支拉取并合并到本地分支  若建立了追踪联系 则git pull origin
+git clone https://github.com/Docoway/firstrepository.git  从远程库中克隆一个本地库
+
+7.创建和合并分支
+git checkout -b dev  创建并切换到dev分支
+git branch dev   创建dev分支
+git branch -d dev  删除dev分支
+git checkout dev  切换到dev分支
+git branch 查看分支和当前分支
+git merge dev  将dev分支内容合并到master上（fast forward方式）通常用git merge --no-ff -m'message' dev
+
+8.解决冲突
+git log --graph --pretty=oneline
+
+9.分支管理
+10.bug分支
+Git stash 工作现场暂存  当dev工作只进行到一半出现bug 要穿件bug分支修复但是dev上工作没弄完
+git stash 之后git status 发现是干净的，就可以创建分支修复bug了
+git stash list 查看工作现场
+git stash pop 恢复工作现场并删除stash内容
+
+11.feature 分支
+git branch -D feature 删除一个没有被合并过的分支（用git branch -d feature 会出错）
+
+12.多人协作
+git remote -v 查看远程库
+git push origin <branch-name> 推送分支  若推送失败先用git pull 抓取远程新提交
+git checkout -b <branch-name> origin/branch-name 在本地创建和远程对应的分支
+git branch --set-upstream <branch-name> origin/branch-name  建立本地分支和远程分支联系 之后就可以直接用git pull 直接从远程抓取分支
+
+13.创建标签
+git tag v1.0 创建一个新标签
+git tag -d v1.0  删除标签
+git tag 查看标签
+Git show v1.0 查看具体标签信息
+
+14.操作标签
+git push origin v1.0 推送某个标签到远程
+git push origin --tags 将所有标签推送到远程
+git tag -d v1.0 删除本地标签
+git push origin :refs/tags/v1.0 删除远程标签
+
+
+
