@@ -1,0 +1,35 @@
+1. jQuery 对象的实质（对dom进行了一次封装 添加了自定义的方法）
+ 
+    (function( window, undefined ) {  
+    var jQuery = (function() {  
+        var jQuery = function( selector, context ) {  
+            return new jQuery.fn.init( selector, context, rootjQuery );  
+        },  
+        jQuery.fn = jQuery.prototype = {  
+            constructor: jQuery,  
+            init: function(selector, context, rootjQuery){  
+                //做一些初始化工作，比如查找对应选择器的dom元素  
+            },  
+            length: 0  
+            //其它一些东西  
+        };  
+        jQuery.fn.init.prototype = jQuery.fn; //原型指向jQuery.fn 则向fn添加属性的话 new init（） 实例也可以找到新加的属性了
+        return jQuery;  
+    })();  
+    window.jQuery = window.$ = jQuery;  
+})(window);  
+
+   也就是说var a = $('div')相当于执行
+       var a = return new jQuery.fn.init('div',context,rootjQuery);   就是jQuery.fn.init这个函数的一个实例
+
+  如： 新加属性
+        $.fn.containsForm = function(){...}
+     便可以使用$('...').containsForm();
+
+
+
+
+2.index()方法
+  $(selector).index()  第一个匹配元素的index 相对于同胞元素位置
+  
+  $(selector).index(element)  元素地index相对于选择器
