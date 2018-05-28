@@ -1,0 +1,120 @@
+1.结构
+src
+	-main
+		-java
+			-package
+	-test
+		-java
+			-package
+	resources
+
+2.pom.xml 
+groupId 项目的包名   artifactId 模块名（项目名） version<!--第一个0表示大版本号 第二个0表示分支版本号 第三个0表示小版本号 snapshot快照 alpha 内部测试  beta公测 Release稳定 GA正式发布-->
+<!--默认为jar 也可以war zip pom --><packaging></packaging>
+<!--项目描述名--><name></name>
+<!--项目地址--><url></url>
+<!--项目描述--><description></description>
+<developers></developers>
+<licenses></licenses>
+<organzation></organization>
+<properties>
+	<自定义的属性>
+	<junit.version>3.8.1</junit.version>   //在后面可以用${junit.version}
+</properties>
+
+<dependencies>
+	<dependency>
+		<groupId>
+		<artifactId>
+		<version>
+		<type>
+		<scope>test</scope> 指的是依赖范围
+		<!--设置依赖是否可选 默认false-->
+		<optional>true/false
+		<!--排除依赖传递列表-->依赖传递时排除非直接的依赖
+		<exclusions>
+			<exclusion>
+			</exclusion>
+		</exclusions>
+	<dependency>
+</dependencies>
+
+<!--依赖的管理-->用于定义在父模块中 用于子模块继承 并不会在本模块中运行
+<dependencyManagement>
+	<dependencies>
+	</dependencies>
+</dependencyManagement>
+
+
+<build>
+	<!--插件列表-->
+	<plugins>
+		<plugin>
+			<groupId>
+			<artifactId>
+			<version>
+		</plugin>
+	</plugins>
+</build>
+
+
+<parent></parent>用于子模块中继承父类
+
+
+<modules>
+	<module>
+	</module>
+</modules>
+
+
+
+3命令
+mvn compile 编译
+mvn test 测试
+mvn package 打包
+
+mvn clean 删除target
+mvn install 安装jar包到本地仓库
+
+4.archetype
+创建目录的两种方式
+mvn archetype:generate  按照提示进行选择
+...后面还要设置groupId artifactId version等
+
+mvn archetype:generate -DgroupId=(组织名，公司网址的反写+项目) -DartifactId=(项目名-模块名) -Dversion=(版本号) -Dpackage=(代码所存在的包名)
+
+5.依赖传递
+hongxing-bge
+hongxing-nange(添加bge依赖)
+hongxing-shanji(添加nange依赖，自然会有bge依赖)
+
+6.依赖冲突
+1.短路优先
+2.路径长度相同情况下，先声明（先添加dependency）就优先
+
+7.maven聚合继承
+
+定义一个父类
+pom 
+<groupId></group>
+<properties></properties>
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			...
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+
+子类pom
+<parent>
+	引入父类pom坐标
+</parent>
+
+<dependencies>
+	<dependency>
+		<groupId></groupId>
+		<artifactId></artifactId>   //就可以了
+	</dependency>
+</dependencies>
+

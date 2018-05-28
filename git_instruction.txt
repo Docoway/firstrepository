@@ -19,7 +19,11 @@ git add 提交到暂存区之后之后 想将文件放回工作区： git reset 
 
 5.删除文件
 删除工作区文件： rm test.txt  或者 进入文件夹删除文件
+<<<<<<< HEAD
 删除版本库文件： git rm test.txt并且git commit -m 'message'   或者用git checkout -- <file>  来恢复工作区误删的文件
+=======
+删除版本库文件： git rm test.txt并且git commit -m 'message'   或者用git checkout -- file  来恢复工作区误删的文件
+>>>>>>> dev
 
 6.添加远程库
 git remote add origin https://github.com/Docoway/firstrepository.git  将本地的创库与github中远程仓库关联
@@ -64,7 +68,11 @@ Git show v1.0 查看具体标签信息
 git push origin v1.0 推送某个标签到远程
 git push origin --tags 将所有标签推送到远程
 git tag -d v1.0 删除本地标签
+<<<<<<< HEAD
 git push origin :refs/tags/v1.0 删除远程标签
 
 
 
+=======
+git push origin :refs/tags/v1.0 删除远程标签
+>>>>>>> dev
