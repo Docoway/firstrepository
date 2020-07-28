@@ -44,10 +44,20 @@ git log --graph --pretty=oneline
 
 9.分支管理
 10.bug分支
-Git stash 工作现场暂存  当dev工作只进行到一半出现bug 要穿件bug分支修复但是dev上工作没弄完
+//保存当前的代码
+Git stash 工作现场暂存(直接将代码保存到stash中)  当dev工作只进行到一半出现bug 要穿件bug分支修复但是dev上工作没弄完
+git stash save "message" 将代码保存到stash中，并对其加以注释（新文件会被忽略）
+git stash save -a "message" 包含新文件
 git stash 之后git status 发现是干净的，就可以创建分支修复bug了
-git stash list 查看工作现场
-git stash pop 恢复工作现场并删除stash内容
+//查看stash
+git stash list 查看工作现场(所有stash)
+git stash show [stash@{num}]查看第一（num+1）条stash改动信息
+//取回stash代码
+git stash apply [stash@{num}] 恢复第一个存储（第num+1个），可恢复多次
+git stash pop [stash@{num}]恢复工作现场并删除stash内容，只能恢复一次，恢复后会把存储直接从存储列表中删除；
+git stash drop stash@{num} 丢弃某个存储
+git stash clear 删除所有保存
+git stash branch 从最新的stash创建分支
 
 11.feature 分支
 git branch -D feature 删除一个没有被合并过的分支（用git branch -d feature 会出错）
